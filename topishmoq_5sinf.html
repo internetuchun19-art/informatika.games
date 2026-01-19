@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>5-sinf Informatika Topishmoqlari</title>
+<style>
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:linear-gradient(135deg,#84fab0,#8fd3f4);
+}
+header{
+ background:#fff;
+ text-align:center;
+ padding:20px;
+}
+.container{
+ max-width:900px;
+ margin:auto;
+ padding:20px;
+}
+.card{
+ background:#fff;
+ border-radius:15px;
+ padding:15px;
+ margin-bottom:15px;
+}
+.question{
+ font-weight:bold;
+}
+button{
+ margin-top:10px;
+ padding:8px 15px;
+ border:none;
+ border-radius:10px;
+ background:#ffd966;
+ cursor:pointer;
+}
+.answer{
+ display:none;
+ margin-top:10px;
+ color:green;
+ font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>18-IDUM</h1>
+<h2>Sherova Malika</h2>
+<p>5-sinf Informatika — TOPISHMOQLAR</p>
+</header>
+
+<div class="container">
+
+<script>
+const riddles=[
+["U ko‘rsatadi, lekin gapirmaydi. Bu nima?","Monitor"],
+["U bilan yozamiz, lekin ruchka emas.","Klaviatura"],
+["U stol ustida yuradi, lekin oyoqsiz.","Sichqoncha"],
+["Qog‘ozga chiqaradi, lekin odam emas.","Printer"],
+["Axborotni saqlaydi, lekin xotira.","Fayl"],
+["Kompyuterning miyasi nima?","Protsessor"],
+["Rasm, ovoz, matn – bular nima?","Axborot"],
+["Internetga bog‘laydi, bu nima?","Modem"],
+["Qog‘ozni o‘qiydi, bu nima?","Skaner"],
+["O‘chib-yonadi, lekin chiroq emas.","Kompyuter"],
+["Axborotni kiritamiz, bu qurilma?","Klaviatura"],
+["Axborotni chiqaradi, bu qurilma?","Monitor"],
+["Kompyuter buyruqlarini nima bajaradi?","Dastur"],
+["Bir nechta kompyuterni bog‘laydi.","Tarmoq"],
+["Ma’lumotni olib yuramiz, bu nima?","Flashka"]
+];
+
+riddles.forEach((r,i)=>{
+ document.write(`
+ <div class="card">
+  <div class="question">${i+1}. ${r[0]}</div>
+  <button onclick="this.nextElementSibling.style.display='block'">
+   Javobni ko‘rish
+  </button>
+  <div class="answer">✅ ${r[1]}</div>
+ </div>
+ `);
+});
+</script>
+
+</div>
+</body>
+</html>
