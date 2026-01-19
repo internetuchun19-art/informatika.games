@@ -11,17 +11,22 @@ body{
 }
 header{
  background:#fff;
- padding:15px;
+ padding:20px;
  text-align:center;
+}
+.wrapper{
+ display:flex;
+ justify-content:center;
+ align-items:flex-start;
 }
 .container{
  max-width:900px;
- margin:auto;
  padding:20px;
 }
 table{
  border-collapse:collapse;
  margin:auto;
+ background:#fff;
 }
 td{
  width:40px;
@@ -64,6 +69,10 @@ button{
  border-radius:12px;
  margin-top:20px;
 }
+@media (max-width:600px){
+ td{width:30px;height:30px;}
+ input{font-size:14px;}
+}
 </style>
 </head>
 <body>
@@ -74,81 +83,90 @@ button{
 <p>5-sinf Informatika — KROSSVORD</p>
 </header>
 
+<div class="wrapper">
 <div class="container">
 
 <table>
 <tr>
-<td><input data-l="K"></td>
-<td><input data-l="L"></td>
-<td><input data-l="A"></td>
-<td><input data-l="V"></td>
-<td><input data-l="I"></td>
-<td><input data-l="A"></td>
-<td><input data-l="T"></td>
-<td><input data-l="U"></td>
-<td><input data-l="R"></td>
+<td><input data-l="K"></td><td><input data-l="L"></td><td><input data-l="A"></td>
+<td><input data-l="V"></td><td><input data-l="I"></td><td><input data-l="A"></td>
+<td><input data-l="T"></td><td><input data-l="U"></td><td><input data-l="R"></td>
 <td><input data-l="A"></td>
 </tr>
 <tr>
-<td><input data-l="M"></td>
-<td><input data-l="O"></td>
-<td><input data-l="N"></td>
-<td><input data-l="I"></td>
-<td><input data-l="T"></td>
-<td><input data-l="O"></td>
-<td><input data-l="R"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
+<td><input data-l="M"></td><td><input data-l="O"></td><td><input data-l="N"></td>
+<td><input data-l="I"></td><td><input data-l="T"></td><td><input data-l="O"></td>
+<td><input data-l="R"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
 </tr>
 <tr>
-<td><input data-l="S"></td>
-<td><input data-l="I"></td>
-<td><input data-l="C"></td>
-<td><input data-l="H"></td>
-<td><input data-l="Q"></td>
-<td><input data-l="O"></td>
-<td><input data-l="N"></td>
-<td><input data-l="C"></td>
-<td><input data-l="H"></td>
+<td><input data-l="S"></td><td><input data-l="I"></td><td><input data-l="C"></td>
+<td><input data-l="H"></td><td><input data-l="Q"></td><td><input data-l="O"></td>
+<td><input data-l="N"></td><td><input data-l="C"></td><td><input data-l="H"></td>
 <td><input data-l="A"></td>
 </tr>
 <tr>
-<td><input data-l="P"></td>
-<td><input data-l="R"></td>
-<td><input data-l="I"></td>
-<td><input data-l="N"></td>
-<td><input data-l="T"></td>
-<td><input data-l="E"></td>
-<td><input data-l="R"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
+<td><input data-l="P"></td><td><input data-l="R"></td><td><input data-l="I"></td>
+<td><input data-l="N"></td><td><input data-l="T"></td><td><input data-l="E"></td>
+<td><input data-l="R"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
 </tr>
 <tr>
-<td><input data-l="F"></td>
-<td><input data-l="A"></td>
-<td><input data-l="Y"></td>
-<td><input data-l="L"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
+<td><input data-l="F"></td><td><input data-l="A"></td><td><input data-l="Y"></td>
+<td><input data-l="L"></td><td class="empty"></td><td class="empty"></td>
+<td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
 </tr>
 <tr>
-<td><input data-l="D"></td>
-<td><input data-l="A"></td>
-<td><input data-l="S"></td>
-<td><input data-l="T"></td>
-<td><input data-l="U"></td>
-<td><input data-l="R"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
-<td class="empty"></td>
+<td><input data-l="D"></td><td><input data-l="A"></td><td><input data-l="S"></td>
+<td><input data-l="T"></td><td><input data-l="U"></td><td><input data-l="R"></td>
+<td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
 </tr>
 <tr>
-<td><input data-l="A"></td>
-<td><input data-l
+<td><input data-l="A"></td><td><input data-l="X"></td><td><input data-l="B"></td>
+<td><input data-l="O"></td><td><input data-l="R"></td><td><input data-l="O"></td>
+<td><input data-l="T"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+</tr>
+<tr>
+<td><input data-l="M"></td><td><input data-l="O"></td><td><input data-l="D"></td>
+<td><input data-l="E"></td><td><input data-l="M"></td><td class="empty"></td>
+<td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+</tr>
+<tr>
+<td><input data-l="S"></td><td><input data-l="K"></td><td><input data-l="A"></td>
+<td><input data-l="N"></td><td><input data-l="E"></td><td><input data-l="R"></td>
+<td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+</tr>
+<tr>
+<td><input data-l="T"></td><td><input data-l="A"></td><td><input data-l="R"></td>
+<td><input data-l="M"></td><td><input data-l="O"></td><td><input data-l="Q"></td>
+<td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+</tr>
+</table>
+
+<div class="clues">
+<b>So‘zlar:</b> Klaviatura, Monitor, Sichqoncha, Printer, Fayl, Dastur, Axborot, Modem, Skaner, Tarmoq
+<br><br>
+<button onclick="check()">Tekshirish</button>
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+</div>
+
+<script>
+function check(){
+ let inputs=document.querySelectorAll("input[data-l]");
+ let ok=0;
+ inputs.forEach(i=>{
+  if(i.value.toUpperCase()===i.dataset.l){
+   i.className="correct"; ok++;
+  }else{
+   i.className="wrong";
+  }
+ });
+ document.getElementById("result").innerText=
+ "To‘g‘ri javoblar: "+ok+" / "+inputs.length;
+}
+</script>
+
+</body>
+</html>
