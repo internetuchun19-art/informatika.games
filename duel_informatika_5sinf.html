@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>5-sinf Informatika Duel Test</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:linear-gradient(135deg,#43cea2,#185a9d);
+ color:#fff;
+}
+header{
+ text-align:center;
+ padding:15px;
+ background:rgba(0,0,0,0.25);
+}
+.container{
+ max-width:950px;
+ margin:auto;
+ padding:20px;
+}
+input{
+ padding:10px;
+ border:none;
+ border-radius:8px;
+ width:40%;
+ font-size:16px;
+ margin:5px;
+}
+button{
+ padding:10px 15px;
+ border:none;
+ border-radius:10px;
+ font-size:16px;
+ cursor:pointer;
+}
+.start-btn{background:#ffd966;}
+.scoreboard{
+ display:flex;
+ justify-content:space-between;
+ margin:15px 0;
+}
+.player{
+ width:45%;
+ background:rgba(255,255,255,0.2);
+ padding:15px;
+ border-radius:15px;
+ text-align:center;
+}
+.score{font-size:34px;}
+.timer{
+ text-align:center;
+ font-size:30px;
+ margin:10px 0;
+}
+.question-box{
+ background:#fff;
+ color:#333;
+ padding:20px;
+ border-radius:15px;
+}
+.answers{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:15px;
+}
+.answers button{background:#f2f2f2;}
+.answers button:hover{background:#ffd966;}
+.result{
+ text-align:center;
+ font-size:22px;
+ margin-top:15px;
+}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>18-IDUM</h1>
+<h2>Sherova Malika</h2>
+<p>5-sinf Informatika — DUEL TEST</p>
+</header>
+
+<div class="container">
+
+<div id="startScreen">
+ <h2>👥 O‘quvchilar ismini kiriting</h2>
+ <input id="nameA" placeholder="O‘quvchi A">
+ <input id="nameB" placeholder="O‘quvchi B"><br><br>
+ <button class="start-btn" onclick="startGame()">🚀 Boshlash</button>
+</div>
+
+<div id="game" class="hidden">
+
+<div class="scoreboard">
+ <div class="player">
+  <h3 id="playerA"></h3>
+  <div class="score" id="scoreA">0</div>
+ </div>
+ <div class="player">
+  <h3 id="playerB"></h3>
+  <div class="score" id="scoreB">0</div>
+ </div>
+</div>
+
+<div class="timer">⏱ <span id="time">10</span></div>
+
+<div class="question-box">
+ <h2 id="question"></h2>
+ <div class="answers">
+  <button onclick="answer(0)"></button>
+  <button onclick="answer(1)"></button>
+  <button onclick="answer(2)"></button>
+  <button onclick="answer(3)"></button>
+ </div>
+</div>
+
+<div class="result" id="result"></div>
+</div>
+
+</div>
+
+<script>
+const questions=[
+{q:"Kompyuter nima?",a:["O‘yinchoq","Axborotni qayta ishlaydi","Telefon","Televizor"],c:1},
+{q:"Qaysi biri kiritish qurilmasi?",a:["Monitor","Printer","Klaviatura","Karnay"],c:2},
+{q:"Qaysi biri chiqarish qurilmasi?",a:["Sichqoncha","Monitor","Mikrofon","Skaner"],c:1},
+{q:"Axborot bu — ?",a:["Qurilma","Ma’lumot","O‘yin","Dastur"],c:1},
+{q:"Kompyuterning miyasi?",a:["RAM","Monitor","Protsessor","Disk"],c:2},
+{q:"Sichqoncha vazifasi?",a:["Yozish","Chop etish","Boshqarish","Saqlash"],c:2},
+{q:"Printer nima qiladi?",a:["Kiritadi","Chop etadi","Saqlaydi","O‘chiradi"],c:1},
+{q:"Axborot turi?",a:["Stul","Rasm","Klaviatura","Sichqoncha"],c:1},
+{q:"Fayl bu — ?",a:["Qurilma","Saqlangan ma’lumot","O‘yin","Dastur"],c:1},
+{q:"Flashka nima?",a:["Chiqarish","Xotira","Kiritish","Monitor"],c:1},
+{q:"Monitor vazifasi?",a:["Kiritish","Chiqarish","Saqlash","Yozish"],c:1},
+{q:"Klaviaturada nima bor?",a:["Harflar","Raqamlar","Belgilar","Barchasi"],c:3},
+{q:"Informatika nimani o‘rganadi?",a:["Sport","Axborot","Rasm","Qo‘shiq"],c:1},
+{q:"Kompyuter o‘zi o‘ylaydimi?",a:["Ha","Yo‘q","Ba’zan","Bilmayman"],c:1},
+{q:"Axborot qanday bo‘ladi?",a:["Matn","Rasm","Ovoz","Barchasi"],c:3},
+{q:"Dastur bu — ?",a:["Temir","Buyruqlar","Monitor","Stol"],c:1},
+{q:"Skaner nima qiladi?",a:["Chop etadi","Kiritadi","Chiqaradi","Saqlaydi"],c:1},
+{q:"Mikrofon — ?",a:["Chiqarish","Kiritish","Saqlash","O‘yin"],c:1},
+{q:"Kompyuter qayerda ishlatiladi?",a:["Faqat uyda","Faqat maktabda","Har joyda","Yo‘q"],c:2},
+{q:"Axborot qayerda saqlanadi?",a:["Monitor","Xotira","Sichqoncha","Stol"],c:1}
+];
+
+let i=0,turn="A",scoreA=0,scoreB=0,time=10,timer;
+let nameA,nameB;
+
+function startGame(){
+ nameA=document.getElementById("nameA").value||"O‘quvchi A";
+ nameB=document.getElementById("nameB").value||"O‘quvchi B";
+ document.getElementById("playerA").innerText=nameA;
+ document.getElementById("playerB").innerText=nameB;
+ document.getElementById("startScreen").classList.add("hidden");
+ document.getElementById("game").classList.remove("hidden");
+ loadQ();
+}
+
+function loadQ(){
+ if(i>=questions.length){endGame();return;}
+ document.getElementById("question").innerText=(i+1)+". "+questions[i].q;
+ document.querySelectorAll(".answers button").forEach((b,j)=>b.innerText=questions[i].a[j]);
+ document.getElementById("result").innerText="Navbat: "+(turn==="A"?nameA:nameB);
+ time=10;
+ document.getElementById("time").innerText=time;
+ clearInterval(timer);
+ timer=setInterval(()=>{
+  time--;
+  document.getElementById("time").innerText=time;
+  if(time===0){switchTurn();}
+ },1000);
+}
+
+function answer(j){
+ clearInterval(timer);
+ if(j===questions[i].c){
+  confetti();
+  if(turn==="A"){scoreA++;document.getElementById("scoreA").innerText=scoreA;}
+  else{scoreB++;document.getElementById("scoreB").innerText=scoreB;}
+  document.getElementById("result").innerText="⭐ To‘g‘ri!";
+  i++;setTimeout(loadQ,700);
+ }else{
+  document.getElementById("result").innerText="❌ Xato!";
+  switchTurn();
+ }
+}
+
+function switchTurn(){
+ turn=turn==="A"?"B":"A";
+ i++;
+ loadQ();
+}
+
+function endGame(){
+ document.getElementById("question").innerText="O‘YIN TUGADI!";
+ document.querySelector(".answers").style.display="none";
+ let res="🤝 Durang!";
+ if(scoreA>scoreB) res="🏆 G‘OLIB: "+nameA;
+ if(scoreB>scoreA) res="🏆 G‘OLIB: "+nameB;
+ document.getElementById("result").innerText=res;
+}
+</script>
+
+</body>
+</html>
